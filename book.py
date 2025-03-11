@@ -11,51 +11,44 @@ display = '''
 -------------------------------------------------------------
 메뉴를 선택하세요 >>> '''
 
-# 도서 등록
-books.append({"title": "파이썬 프로그래밍", "author": "홍길동", "publisher": "파이썬출판사", "genre": "IT"})
-books.append({"title": "알고리즘", "author": "김철수", "publisher": "알고리즘출판사", "genre": "IT"})
-books.append({"title": "어린 왕자", "author": "생텍쥐페리", "publisher": "문학출판사", "genre": "문학"})
+while True:
+    menu = input(display).strip()
 
-# 도서 목록 조회
-print("등록된 책 목록:")
-for idx, book in enumerate(books, start=1):
-    print(f"{idx}. {book['title']} - {book['author']} ({book['publisher']})")
+    # 도서 등록
+    if menu == '1':
+        title = input("책 제목을 입력하세요: ")
+        author = input("저자를 입력하세요: ")
+        publisher = input("출판사를 입력하세요: ")
+        genre = input("장르를 입력하세요: ")
+        
+        # 입력받은 정보로 도서 추가
+        books.append({"title": title, "author": author, "publisher": publisher, "genre": genre})
+        print(f"'{title}' 책이 등록되었습니다.")
+        
+    # 2. 도서 목록 조회
+    elif menu == '2':
+        print('프로그램 종료')
 
-# 도서 검색
-keyword = "파이썬"
-print(f"\n'{keyword}'에 대한 검색 결과:")
-for book in books:
-    if keyword.lower() in book['title'].lower() or keyword.lower() in book['author'].lower():
-        print(f"{book['title']} - {book['author']} ({book['publisher']})")
+    # 3. 도서 검색
+    elif menu == '3':
+        print('프로그램 종료')
+        
+    # 4. 대출 실행
+    elif menu == '4':
+        print('프로그램 종료')
 
-# 대출 관리
-title_to_loan = "파이썬 프로그래밍"
-user_to_loan = "박지민"
+    # 5. 대출 도서 목록
+    elif menu == '5':
+        print('프로그램 종료')
+        sys.exit()
 
-if any(book['title'] == title_to_loan for book in books):
-    if title_to_loan not in loan_history:
-        loan_history[title_to_loan] = user_to_loan
-        print(f"\n'{title_to_loan}' 책이 {user_to_loan}에게 대출되었습니다.")
+        # 4. 대출 실행
+    elif menu == '6':
+        print('프로그램 종료')
+
+    elif menu == '7':
+        print('프로그램 종료')
+
+    # 잘못된 입력 처리
     else:
-        print(f"\n'{title_to_loan}' 책은 이미 대출 중입니다.")
-else:
-    print(f"\n'{title_to_loan}' 책은 등록되지 않았습니다.")
-
-# 반납 관리
-title_to_return = "파이썬 프로그래밍"
-if title_to_return in loan_history:
-    user = loan_history.pop(title_to_return)
-    print(f"\n'{title_to_return}' 책이 {user}로부터 반납되었습니다.")
-else:
-    print(f"\n'{title_to_return}' 책은 대출 중이지 않습니다.")
-
-# 통계 기능: 장르별 책 수
-print("\n장르별 통계:")
-for book in books:
-    genre = book['genre']
-    if genre not in genre_count:
-        genre_count[genre] = 0
-    genre_count[genre] += 1
-
-for genre, count in genre_count.items():
-    print(f"{genre}: {count}권")
+        print("메뉴 선택을 잘못하셨습니다.")
