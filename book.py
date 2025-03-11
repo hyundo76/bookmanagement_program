@@ -68,11 +68,11 @@ while True:
 
     # 5. 대출 도서 목록
     elif menu == '5':
-        print('프로그램 종료')
+        print('대출 도서 목록')
 
     # 6. 도서 반납
     elif menu == '6':
-        print('프로그램 종료')
+        print('도서 반납')
 
     elif menu == '7':
         print('프로그램 종료')
