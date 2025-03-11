@@ -34,7 +34,7 @@ while True:
 
     # 3. 도서 검색
     elif menu == '3':
-         search_term = input("검색할 책 제목, 저자, ISBN 등을 입력하세요: ").lower()
+         search_term = input("검색할 책 제목, 저자를 입력하세요: ").lower()
          found_books = [book for book in books if search_term in book['title'].lower() or search_term in book['author'].lower()]
         
          if found_books:
@@ -46,7 +46,25 @@ while True:
         
     # 4. 대출 실행
     elif menu == '4':
-        print('프로그램 종료')
+        title_to_loan = input("대출할 책 제목을 입력하세요: ")
+
+        # 대출할 책이 있는지 확인
+        book_found = None
+        for book in books:
+            if book['title'] == title_to_loan:
+                book_found = book
+                break
+        
+        if book_found:
+            # 책이 존재하고 대출되지 않았다면 대출자 정보 입력
+            if title_to_loan not in loan_history:
+                borrower = input(f"'{title_to_loan}' 책을 대출할 사람의 이름을 입력하세요: ")
+                loan_history[title_to_loan] = borrower
+                print(f"'{title_to_loan}' 책이 {borrower}에게 대출되었습니다.")
+            else:
+                print(f"'{title_to_loan}' 책은 이미 대출 중입니다.")
+        else:
+            print(f"'{title_to_loan}' 책은 등록되지 않았습니다.")
 
     # 5. 대출 도서 목록
     elif menu == '5':
