@@ -15,9 +15,13 @@ books = [{"title": "해리포터", "author": "조앤 롤링", "publisher": "문�
          {"title": "홍길동전", "author": "홍길동", "publisher": "문학수첩", "genre": "동화"},
          {"title": "햄릿", "author": "셰익스피어", "publisher": "문학수첩", "genre": "역사"},
          {"title": "맥베스", "author": "셰익스피어", "publisher": "문학수첩", "genre": "역사"},
-         {"title": "오셸로", "author": "셰익스피어", "publisher": "문학수첩", "genre": "역사"}]
+         {"title": "오셸로", "author": "셰익스피어", "publisher": "문학수첩", "genre": "역사"},
+         {"title": "리어왕", "author": "셰익스피어", "publisher": "문학수첩", "genre": "역사"},
+         {"title": "햄릿", "author": "셰익스피어", "publisher": "북플러스", "genre": "역사"},
+         {"title": "맥베스", "author": "셰익스피어", "publisher": "다빈소년", "genre": "역사"},
+         {"title": "오셸로", "author": "셰익스피어", "publisher": "부경서점", "genre": "역사"},]
     
-loan_history = {}
+loan_history = {"맥배스" : "박현도" , "오셸로" : "정지우", "오셸로": "박현도", "리어왕" : "백경이", "흥부전" : "백경이"}
 genre_count = {}
 
 # 메뉴
@@ -90,10 +94,31 @@ while True:
     # 5. 대출 도서 목록
     elif menu == '5':
         print('대출 도서 목록')
+        if loan_history:
+            for title, borrower in loan_history.items():
+                print(f"{title} - {borrower}")
+        else:
+            print("대출목록없음")
+            
 
     # 6. 도서 반납
     elif menu == '6':
         print('도서 반납')
+        print('대출 도서 목록')
+        if loan_history:
+            for title, borrower in loan_history.items():
+                print(f"{title} - {borrower}")
+        else:
+            print("대출목록없음")
+
+        loan_borrower=input(print("대출자 성함을 입력하세요. "))
+        loan_title=input(print("반납할 도서를 입력하세요. "))
+        for title, borrower in loan_history.items():
+            if loan_borrower == borrower and loan_title == title:
+                del loan_history[loan_title]
+                print("반납되셨습니다.")
+            else :
+                print("맞는 책이 존재하지 않습니다.")
 
     elif menu == '7':
         print('프로그램 종료')
