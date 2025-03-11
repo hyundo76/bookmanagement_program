@@ -31,7 +31,12 @@ while True:
 
     # 3. 도서 검색
     elif menu == '3':
-        print('프로그램 종료')
+        print('도서 검색')
+        keyword = input("검색할 제목이나 저자를 입력하세요: ")
+        a = False
+        for title, author in books:
+            if keyword in title or keyword in author:
+                print(f"제목 : ")
         
     # 4. 대출 실행
     elif menu == '4':
