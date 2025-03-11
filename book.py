@@ -111,12 +111,13 @@ while True:
         else:
             print("대출목록없음")
 
-        loan_borrower=input(print("대출자 성함을 입력하세요. "))
-        loan_title=input(print("반납할 도서를 입력하세요. "))
+        loan_borrower=input("대출자 성함을 입력하세요. ")
+        loan_title=input("반납할 도서를 입력하세요. ")
         for title, borrower in loan_history.items():
             if loan_borrower == borrower and loan_title == title:
                 del loan_history[loan_title]
                 print("반납되셨습니다.")
+                break
             else :
                 print("맞는 책이 존재하지 않습니다.")
 
