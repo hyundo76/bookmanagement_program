@@ -58,6 +58,24 @@ def loanBook(book_found):
     else:
         print(f"'{title_to_loan}' 책은 등록되지 않았습니다.")
 
+def process_book_return(loan_borrower,loan_title):
+
+    for title, borrower in loan_history.items():
+        if loan_borrower == borrower and loan_title == title:
+            del loan_history[loan_title]
+            print("반납되셨습니다.")
+            break
+        else:
+            print("맞는 책이 존재하지 않습니다.")
+
+def display_loaned_books(loan_history):
+    print("대출 도서 목록")
+    if loan_history:
+        for title, borrower in loan_history.items():
+            print(f"{title} - {borrower}")
+    else:
+        print("대출목록없음")
+
 
 # 도서 목록과 관련된 데이터
 books = [
@@ -244,32 +262,18 @@ while True:
 
     # 5. 대출 도서 목록, loan_history 딕셔너리 출력
     elif menu == "5":
-        print("대출 도서 목록")
-        if loan_history:
-            for title, borrower in loan_history.items():
-                print(f"{title} - {borrower}")
-        else:
-            print("대출목록없음")
+        display_loaned_books(loan_history)
+
 
     # 6. 도서 반납, 대출자 이름과 반납할 책 제목 입력, del 함수로 loan_history 딕셔너리에서 삭제
     elif menu == "6":
         print("도서 반납")
-        print("대출 도서 목록")
-        if loan_history:
-            for title, borrower in loan_history.items():
-                print(f"{title} - {borrower}")
-        else:
-            print("대출목록없음")
-
+        display_loaned_books(loan_history)
+        
         loan_borrower = input("대출자 성함을 입력하세요. ")
         loan_title = input("반납할 도서를 입력하세요. ")
-        for title, borrower in loan_history.items():
-            if loan_borrower == borrower and loan_title == title:
-                del loan_history[loan_title]
-                print("반납되셨습니다.")
-                break
-            else:
-                print("맞는 책이 존재하지 않습니다.")
+        
+        process_book_return(loan_borrower,loan_title)
 
     elif menu == "7":
         print("프로그램 종료")
