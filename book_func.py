@@ -13,10 +13,12 @@ def addBook():
     )
     return title
 
+
 def getBookList(bookss):
     print("\n등록된 책 목록:")
     for idx, book in enumerate(bookss, start=1):
         print(f"{idx}. {book['title']} - {book['author']} ({book['publisher']})")
+
 
 def researchbook(keyword):
     a = False
@@ -33,9 +35,10 @@ def researchbook(keyword):
             book01.append(book)
             a = True
 
-    return book01,a
+    return book01, a
 
-def  checkLoanAvailability(title_to_loan):
+
+def checkLoanAvailability(title_to_loan):
     # 대출할 책이 있는지 확인
     book_found = None
     for book in books:
@@ -43,6 +46,7 @@ def  checkLoanAvailability(title_to_loan):
             book_found = book
             break
     return book_found
+
 
 def loanBook(book_found):
     if book_found:
@@ -218,7 +222,7 @@ while True:
     # 2. 도서 목록 조회, enumerate 함수로 인덱스 번호를 붙여서 출력
     elif menu == "2":
         getBookList(books)
-        
+
     # 3. 도서 검색, 검색어를 입력받아 검색 결과 출력, or 조건문으로 검색어가 포함된 모든 책 출력
     elif menu == "3":
         print("도서 검색")
@@ -228,10 +232,10 @@ while True:
             .lower()
         )
 
-        book01,a=researchbook(keyword)
-        if not a :
+        book01, a = researchbook(keyword)
+        if not a:
             print("검색결과가 없습니다.")
-        
+
         getBookList(book01)
 
     # 4. 대출 실행, 대출할 책 제목을 입력받아 대출자 정보 입력, 플래그 변수[none/ 값 있음]로 책 보유 유무 확인,
