@@ -21,7 +21,7 @@ books = [{"title": "해리포터", "author": "조앤 롤링", "publisher": "문�
          {"title": "맥베스", "author": "셰익스피어", "publisher": "다빈소년", "genre": "역사"},
          {"title": "오셸로", "author": "셰익스피어", "publisher": "부경서점", "genre": "역사"},
          {"title": "리어왕", "author": "셰익스피어", "publisher": "북플러스", "genre": "역사"},
-         {"title": "데이안", "author": "헤르만 헤세", "publisher": "문학좋아", "genre": "소설"},
+         {"title": "데미안", "author": "헤르만 헤세", "publisher": "문학좋아", "genre": "소설"},
          {"title": "싯다르타", "author": "헤르만 헤세", "publisher": "문학싫어", "genre": "소설"},
          {"title": "구토", "author": "장뽈 샤르트", "publisher": "좋은사람들", "genre": "소설"},
          {"title": "이방인", "author": "알베르 카뮈", "publisher": "문학수첩", "genre": "소설"},]
@@ -46,17 +46,17 @@ while True:
         publisher = input("출판사를 입력하세요: ")
         genre = input("장르를 입력하세요: ")
         
-        # 입력받은 정보로 도서 추가
+        # 입력받은 정보로 도서 추가, append 함수로 books 리스트에 딕셔너리 추가
         books.append({"title": title, "author": author, "publisher": publisher, "genre": genre})
         print(f"'{title}' 책이 등록되었습니다.")
         
-    # 2. 도서 목록 조회
+    # 2. 도서 목록 조회, enumerate 함수로 인덱스 번호를 붙여서 출력
     elif menu == '2':
         print("\n등록된 책 목록:")
         for idx, book in enumerate(books, start=1):
             print(f"{idx}. {book['title']} - {book['author']} ({book['publisher']})")
 
-    # 3. 도서 검색
+    # 3. 도서 검색, 검색어를 입력받아 검색 결과 출력, or 조건문으로 검색어가 포함된 모든 책 출력
     elif menu == '3':
         print('도서 검색')
         keyword = input("검색할 내용을 입력하세요. (제목, 저자, 출판사, 장르) ").strip().lower()
@@ -73,7 +73,7 @@ while True:
         if not a:
             print("검색 결과가 없습니다.")
         
-    # 4. 대출 실행
+    # 4. 대출 실행, 대출할 책 제목을 입력받아 대출자 정보 입력, 플래그 변수[none/ 값 있음]로 책 보유 유무 확인,
     elif menu == '4':
         title_to_loan = input("대출할 책 제목을 입력하세요: ")
 
@@ -85,7 +85,7 @@ while True:
                 break
         
         if book_found:
-            # 책이 존재하고 대출되지 않았다면 대출자 정보 입력
+            # 책이 존재하고 대출되지 않았다면 대출자 정보 입력, loan_history 딕셔너리에 대출 정보 저장
             if title_to_loan not in loan_history:
                 borrower = input(f"'{title_to_loan}' 책을 대출할 사람의 이름을 입력하세요: ")
                 loan_history[title_to_loan] = borrower
@@ -95,7 +95,7 @@ while True:
         else:
             print(f"'{title_to_loan}' 책은 등록되지 않았습니다.")
 
-    # 5. 대출 도서 목록
+    # 5. 대출 도서 목록, loan_history 딕셔너리 출력
     elif menu == '5':
         print('대출 도서 목록')
         if loan_history:
@@ -105,7 +105,7 @@ while True:
             print("대출목록없음")
             
 
-    # 6. 도서 반납
+    # 6. 도서 반납, 대출자 이름과 반납할 책 제목 입력, del 함수로 loan_history 딕셔너리에서 삭제
     elif menu == '6':
         print('도서 반납')
         print('대출 도서 목록')
